@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="kaybettin">#bc2121</color>
+    <color name="kazandin">#bc2121</color>
+    <color name="coksicak">#3b5b37</color>
+    <color name="sicak">#3b5b37</color>
+    <color name="soguk">#3b5b37</color>
+    <color name="coksoguk">#3b5b37</color>
+
+</resources>

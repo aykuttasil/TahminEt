@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TahminEt</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="kaybettin">Kaybettiniz !</string>
+    <string name="kazandin">Kazandınız..</string>
+    <string name="coksicak">Çok Yaklaştın</string>
+    <string name="sicak">Yaklaştın</string>
+    <string name="soguk">Alakası Yok</string>
+    <string name="coksoguk">Hiç Alakası Yok</string>
+
+
+    <string name="kalanhak">Kalan Hakkınız : </string>
+    
+</resources>
