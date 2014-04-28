@@ -3,6 +3,7 @@ package com.aka.tahminet;
 import java.util.Random;
 
 import android.content.res.Resources;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
+
+	private static String HIGH_SCORE = "highscore";
+
+	Kutuphane kutuphane = new Kutuphane();
 
 	Resources resource = null;
 
@@ -38,9 +43,19 @@ public class MainActivity extends ActionBarActivity {
 	int tahminSayi;
 	int denemesayisi = 0;
 
+	TextView textview_higscore;
+
 	public void btn_DogruMu_Click(View vi) {
 
 		TextView textviewkalanhak = (TextView) findViewById(R.id.textViewkalanHak);
+
+		TextView textview_girilensayi = (TextView) findViewById(R.id.textview_girilensayi);
+		TextView textview_girilensayi_title = (TextView) findViewById(R.id.textview_girilensayi_title);
+		textview_girilensayi_title.setVisibility(ViewGroup.VISIBLE);
+
+		EditText girilensayi = (EditText) findViewById(R.id.edittext_girilenSayi);
+		if (girilensayi.getText().toString().equals(""))
+			return;
 
 		if (tahminHakki == 0) {
 			tahminSayi = rnd.nextInt(100);
@@ -54,14 +69,19 @@ public class MainActivity extends ActionBarActivity {
 			return;
 		}
 
-		EditText girilensayi = (EditText) findViewById(R.id.edittext_girilenSayi);
 		int sayi = Integer.parseInt(girilensayi.getText().toString());
 
 		if (sayi == tahminSayi) {
+
+			TextView textview_higscore_title = (TextView) findViewById(R.id.textview_higscore_title);
+			textview_higscore_title.setVisibility(ViewGroup.VISIBLE);
+			HighScoreGoster(tahminHakki);
+
 			SonucYaz(resource.getString(R.string.kazandin));
 			tahminHakki = 0;
 			textviewkalanhak.setText(resource.getString(R.string.kalanhak)
-					+ (denemesayisi - tahminHakki));
+					+ (denemesayisi));
+
 			return;
 		} else if (Math.abs(tahminSayi - sayi) <= 5) {
 			SonucYaz(resource.getString(R.string.coksicak));
@@ -79,6 +99,33 @@ public class MainActivity extends ActionBarActivity {
 
 		textviewkalanhak.setText(resource.getString(R.string.kalanhak)
 				+ (denemesayisi - tahminHakki));
+
+		textview_girilensayi.setText(girilensayi.getText().toString());
+		girilensayi.setText("");
+
+	}
+
+	private void HighScoreGoster(int score) {
+
+		String currentscore = kutuphane.getsharedPreference(this, HIGH_SCORE);
+		if (currentscore != null) {
+			int highscore = Integer.parseInt(currentscore);
+
+			if (score < highscore) {
+
+				HighScoreDuzenle(score);
+			}
+		} else {
+			HighScoreDuzenle(score);
+		}
+	}
+
+	private void HighScoreDuzenle(int score) {
+		String scr = Integer.toString(score);
+		kutuphane.sharedPreferencesEdit(this, HIGH_SCORE, scr);
+
+		textview_higscore = (TextView) findViewById(R.id.textview_higscore);
+		textview_higscore.setText(scr);
 	}
 
 	private void SonucYaz(String derece) {
@@ -124,6 +171,9 @@ public class MainActivity extends ActionBarActivity {
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			return true;
+		} else if (id == R.id.action_sifirla) {
+
+			kutuphane.sharedPreferencesEdit(this, HIGH_SCORE, null);
 		}
 		return super.onOptionsItemSelected(item);
 	}

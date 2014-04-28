@@ -40,8 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/edittext_girilenSayi"
         android:layout_centerHorizontal="true"
-        android:text="Doğru Mu ?" 
-        android:onClick="btn_DogruMu_Click"/>
+        android:onClick="btn_DogruMu_Click"
+        android:text="Doğru Mu ?" />
 
     <TextView
         android:id="@+id/textViewSonuc"
@@ -61,5 +61,44 @@
         android:layout_centerHorizontal="true"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textview_girilensayi_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/edittext_girilenSayi"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/button1"
+        android:text="Girilen Sayı"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/textview_girilensayi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textview_girilensayi_title"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textview_girilensayi_title"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textview_higscore_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/edittext_girilenSayi"
+        android:text="High Score"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/textview_higscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textview_higscore_title"
+        android:layout_alignRight="@+id/textview_higscore_title"
+        android:layout_below="@+id/textview_higscore_title"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
