@@ -114,10 +114,15 @@ public class MainActivity extends ActionBarActivity {
 			if (score < highscore) {
 
 				HighScoreDuzenle(score);
+			} else {
+				HighScoreDuzenle(highscore);
 			}
+
 		} else {
+
 			HighScoreDuzenle(score);
 		}
+
 	}
 
 	private void HighScoreDuzenle(int score) {
@@ -174,6 +179,7 @@ public class MainActivity extends ActionBarActivity {
 		} else if (id == R.id.action_sifirla) {
 
 			kutuphane.sharedPreferencesEdit(this, HIGH_SCORE, null);
+			tahminHakki = 0;
 		}
 		return super.onOptionsItemSelected(item);
 	}
